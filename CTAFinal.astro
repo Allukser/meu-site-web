@@ -1,0 +1,98 @@
+---
+const WA_LINK = "https://wa.me/5511999999999?text=Olá%2C%20vi%20o%20seu%20site%20e%20gostaria%20de%20agendar%20uma%20sessão";
+---
+<section class="cta-final section" id="agendar">
+  <div class="container">
+    <div class="cta-final__box">
+      <div class="cta-bg-orb cta-orb1" aria-hidden="true"></div>
+      <div class="cta-bg-orb cta-orb2" aria-hidden="true"></div>
+
+      <span class="tag">Comece agora</span>
+      <h2 class="cta-final__heading">
+        O primeiro passo<br>
+        costuma ser o mais <em>difícil</em>.<br>
+        Você não precisa dá-lo sozinho.
+      </h2>
+      <p class="cta-final__sub">
+        Mande uma mensagem agora — sem compromisso, sem formulários. 
+        Só uma conversa para começar.
+      </p>
+
+      <a href={WA_LINK} target="_blank" rel="noopener" class="btn-whatsapp cta-final__btn">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.119.554 4.107 1.523 5.83L.057 23.077a.75.75 0 0 0 .92.919l5.33-1.453A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.693 9.693 0 0 1-4.946-1.357l-.355-.21-3.685 1.004.987-3.595-.232-.37A9.696 9.696 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+        Quero dar o primeiro passo
+      </a>
+
+      <div class="cta-final__trust">
+        <span>🔒 Sigilo garantido</span>
+        <span>⏱ Resposta em até 24h</span>
+        <span>💻 Online & presencial</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.cta-final { background: var(--sand-100); }
+
+.cta-final__box {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg, var(--sage-700) 0%, var(--sage-600) 60%, var(--sage-500) 100%);
+  border-radius: var(--radius-xl);
+  padding: clamp(3rem, 7vw, 5.5rem) clamp(2rem, 5vw, 4rem);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.cta-bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: .25;
+  pointer-events: none;
+}
+.cta-orb1 { width: 400px; height: 400px; background: var(--accent-light); top: -100px; right: -80px; }
+.cta-orb2 { width: 300px; height: 300px; background: #D5E8DC; bottom: -80px; left: -60px; }
+
+.cta-final .tag { background: rgba(255,255,255,.15); border-color: rgba(255,255,255,.3); color: #fff; }
+
+.cta-final__heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: #fff;
+  max-width: 22ch;
+}
+.cta-final__heading em { font-style: italic; color: var(--accent-light); }
+
+.cta-final__sub {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,.8);
+  max-width: 46ch;
+  line-height: 1.8;
+}
+
+.cta-final__btn {
+  background: #fff;
+  color: var(--sage-700);
+  font-size: 1rem;
+  padding: 1rem 2.25rem;
+  box-shadow: 0 6px 24px rgba(0,0,0,.2);
+}
+.cta-final__btn:hover { background: var(--sand-50); transform: translateY(-3px); }
+.cta-final__btn svg path { fill: var(--sage-600); }
+
+.cta-final__trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem 2rem;
+  justify-content: center;
+  font-size: .82rem;
+  color: rgba(255,255,255,.7);
+}
+</style>

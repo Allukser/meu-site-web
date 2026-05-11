@@ -1,0 +1,157 @@
+---
+const etapas = [
+  {
+    num: "01",
+    titulo: "Primeiro contato",
+    desc: "Você manda uma mensagem pelo WhatsApp. Sem formulários longos, sem burocracia. Conversa simples, no seu ritmo.",
+    detalhe: "Resposta em até 24h",
+    icon: "💬",
+  },
+  {
+    num: "02",
+    titulo: "Sessão inicial",
+    desc: "Nosso primeiro encontro é de acolhimento. Você conta o que está sentindo, e eu ouço sem julgamentos. Aqui você entende o que a terapia pode fazer por você.",
+    detalhe: "50 minutos · Online ou presencial",
+    icon: "🌱",
+  },
+  {
+    num: "03",
+    titulo: "Seu plano terapêutico",
+    desc: "Juntos, definimos a frequência e os objetivos do processo. A terapia é moldada para a sua realidade — não o contrário.",
+    detalhe: "Personalizado para você",
+    icon: "🗺️",
+  },
+  {
+    num: "04",
+    titulo: "Transformação real",
+    desc: "Com constância, você começa a notar mudanças: mais clareza, menos reatividade, relações mais saudáveis. A vida começa a pesar menos.",
+    detalhe: "Resultados visíveis",
+    icon: "✨",
+  },
+];
+---
+<section class="como-funciona section" id="como-funciona">
+  <div class="container">
+    <div class="como__header">
+      <span class="tag">O processo</span>
+      <div class="divider"></div>
+      <h2 class="section-heading">
+        Do primeiro contato à<br>
+        <em>transformação</em>
+      </h2>
+      <p class="section-sub">
+        Muita gente hesita por não saber o que esperar. 
+        Aqui está o caminho, claro e sem mistério.
+      </p>
+    </div>
+
+    <div class="etapas">
+      {etapas.map((e, i) => (
+        <div class="etapa" data-index={i}>
+          <div class="etapa__num-col">
+            <div class="etapa__num">{e.num}</div>
+            {i < etapas.length - 1 && <div class="etapa__line" aria-hidden="true"></div>}
+          </div>
+          <div class="etapa__card">
+            <div class="etapa__icon">{e.icon}</div>
+            <div class="etapa__body">
+              <h3 class="etapa__title">{e.titulo}</h3>
+              <p class="etapa__desc">{e.desc}</p>
+              <span class="etapa__detalhe">{e.detalhe}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.como__header { max-width: 540px; margin-bottom: 4rem; }
+
+.etapas { display: flex; flex-direction: column; gap: 0; }
+
+.etapa {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.etapa__num-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.etapa__num {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--sand-100);
+  border: 2px solid var(--sage-400);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--sage-600);
+  font-weight: 400;
+  flex-shrink: 0;
+  z-index: 1;
+  position: relative;
+}
+
+.etapa__line {
+  width: 2px;
+  flex: 1;
+  min-height: 40px;
+  background: linear-gradient(to bottom, var(--sage-400), var(--sand-300));
+  margin: 4px 0;
+}
+
+.etapa__card {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background: var(--sand-50);
+  border: 1px solid var(--sand-200);
+  border-radius: var(--radius-lg);
+  margin-bottom: 1.25rem;
+  transition: background .2s, box-shadow .2s;
+}
+.etapa__card:hover {
+  background: #fff;
+  box-shadow: var(--shadow-card);
+}
+
+.etapa__icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: .1rem;
+}
+
+.etapa__title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--warm-900);
+  margin-bottom: .5rem;
+}
+.etapa__desc {
+  font-size: .93rem;
+  color: var(--warm-600);
+  line-height: 1.75;
+  margin-bottom: .75rem;
+}
+.etapa__detalhe {
+  font-size: .78rem;
+  color: var(--sage-600);
+  font-weight: 500;
+  background: var(--sand-100);
+  border: 1px solid var(--sand-200);
+  padding: .25rem .75rem;
+  border-radius: 99px;
+}
+
+@media (max-width: 600px) {
+  .etapa { grid-template-columns: 48px 1fr; gap: 1rem; }
+}
+</style>

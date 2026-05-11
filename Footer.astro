@@ -1,0 +1,99 @@
+---
+const WA_LINK = "https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agendar%20uma%20sessão";
+---
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <p class="footer__name">Roangela Rocha</p>
+      <p class="footer__crp">Psicóloga · CRP 06-143094</p>
+      <p class="footer__desc">
+        Psicoterapia individual com foco em ansiedade, autoconhecimento e 
+        bem-estar emocional.
+      </p>
+    </div>
+    <nav class="footer__nav" aria-label="Links do rodapé">
+      <strong>Navegação</strong>
+      <a href="#sobre">Sobre</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#faq">Perguntas frequentes</a>
+    </nav>
+    <div class="footer__contact">
+      <strong>Contato</strong>
+      <a href={WA_LINK} target="_blank" rel="noopener" class="footer__wa">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.119.554 4.107 1.523 5.83L.057 23.077a.75.75 0 0 0 .92.919l5.33-1.453A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.693 9.693 0 0 1-4.946-1.357l-.355-.21-3.685 1.004.987-3.595-.232-.37A9.696 9.696 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+        Enviar mensagem
+      </a>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="container">
+      <p>© {new Date().getFullYear()} Roangela Rocha · Todos os direitos reservados</p>
+      <p>Psicóloga registrada no Conselho Regional de Psicologia — CRP 06-143094</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+.footer {
+  background: var(--warm-900);
+  color: rgba(255,255,255,.6);
+  padding-top: 4rem;
+}
+
+.footer__inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.footer__name {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: .25rem;
+}
+.footer__crp { font-size: .75rem; color: var(--sage-400); margin-bottom: 1rem; }
+.footer__desc { font-size: .88rem; line-height: 1.7; max-width: 30ch; }
+
+.footer__nav, .footer__contact {
+  display: flex; flex-direction: column; gap: .65rem;
+}
+.footer__nav strong, .footer__contact strong {
+  font-size: .8rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  font-weight: 500;
+  margin-bottom: .25rem;
+}
+.footer__nav a, .footer__contact a {
+  font-size: .88rem;
+  transition: color .2s;
+}
+.footer__nav a:hover { color: var(--sage-400); }
+
+.footer__wa {
+  display: inline-flex; align-items: center; gap: .5rem;
+  color: var(--sage-400) !important;
+}
+.footer__wa:hover { color: var(--sage-300, var(--sage-400)) !important; }
+
+.footer__bottom {
+  padding: 1.25rem 0;
+}
+.footer__bottom .container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 2rem;
+  justify-content: space-between;
+  font-size: .75rem;
+}
+
+@media (max-width: 720px) {
+  .footer__inner { grid-template-columns: 1fr; gap: 2rem; }
+  .footer__bottom .container { flex-direction: column; gap: .25rem; }
+}
+</style>

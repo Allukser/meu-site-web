@@ -1,0 +1,196 @@
+---
+const WA_LINK = "https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agendar%20uma%20sessão";
+---
+<section class="hero" id="inicio">
+  <div class="hero__bg-circles" aria-hidden="true">
+    <span class="circle c1"></span>
+    <span class="circle c2"></span>
+    <span class="circle c3"></span>
+  </div>
+
+  <div class="container hero__inner">
+    <div class="hero__content">
+      <span class="tag">Psicoterapia Online & Presencial</span>
+      <h1 class="hero__heading">
+        Você merece se<br>
+        sentir <em>inteiro</em><br>
+        outra vez.
+      </h1>
+      <p class="hero__sub">
+        Se você carrega ansiedade, exaustão ou a sensação de estar preso — 
+        a terapia é o espaço onde isso começa a mudar. Com acolhimento, 
+        técnica e sem julgamentos.
+      </p>
+      <div class="hero__actions">
+        <a href={WA_LINK} target="_blank" rel="noopener" class="btn-whatsapp">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.119.554 4.107 1.523 5.83L.057 23.077a.75.75 0 0 0 .92.919l5.33-1.453A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.693 9.693 0 0 1-4.946-1.357l-.355-.21-3.685 1.004.987-3.595-.232-.37A9.696 9.696 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+          Quero agendar minha primeira sessão
+        </a>
+        <a href="#como-funciona" class="hero__link">Como funciona →</a>
+      </div>
+      <div class="hero__trust">
+        <div class="trust-item">
+          <strong>+200</strong>
+          <span>pacientes atendidos</span>
+        </div>
+        <div class="trust-divider" aria-hidden="true"></div>
+        <div class="trust-item">
+          <strong>CRP 06-143094</strong>
+          <span>Registro ativo CFP</span>
+        </div>
+        <div class="trust-divider" aria-hidden="true"></div>
+        <div class="trust-item">
+          <strong>Online & Presencial</strong>
+          <span>Você escolhe o formato</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__visual" aria-hidden="true">
+      <div class="hero__card-float card-top">
+        <span class="card-emoji">🌿</span>
+        <p>"Hoje me sinto capaz de lidar com o que antes me paralisava."</p>
+        <span class="card-author">— Paciente, 34 anos</span>
+      </div>
+      <div class="hero__orb"></div>
+      <div class="hero__card-float card-bottom">
+        <span class="card-emoji">✨</span>
+        <p>"Aprendi a me ouvir antes de reagir. Isso mudou tudo."</p>
+        <span class="card-author">— Paciente, 28 anos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.hero {
+  position: relative;
+  padding-top: calc(72px + 5rem);
+  padding-bottom: var(--section-py);
+  overflow: hidden;
+}
+
+/* bg ambient circles */
+.hero__bg-circles { position: absolute; inset: 0; pointer-events: none; }
+.circle {
+  position: absolute; border-radius: 50%;
+  filter: blur(80px); opacity: .55;
+}
+.c1 { width: 520px; height: 520px; background: var(--accent-light); top: -100px; right: -120px; }
+.c2 { width: 380px; height: 380px; background: #D5E8DC; bottom: -60px; left: -80px; }
+.c3 { width: 220px; height: 220px; background: var(--sand-200); top: 40%; left: 40%; }
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* content side */
+.hero__heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -.01em;
+  color: var(--warm-900);
+  margin-top: 1.25rem;
+}
+.hero__heading em { font-style: italic; color: var(--sage-500); }
+
+.hero__sub {
+  margin-top: 1.25rem;
+  font-size: 1.05rem;
+  color: var(--warm-600);
+  max-width: 46ch;
+  line-height: 1.8;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 2.25rem;
+}
+.hero__link {
+  font-size: .95rem;
+  color: var(--sage-600);
+  font-weight: 500;
+  transition: gap .2s;
+}
+.hero__link:hover { letter-spacing: .01em; }
+
+.hero__trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem 1.5rem;
+  align-items: center;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--sand-200);
+}
+.trust-item { display: flex; flex-direction: column; }
+.trust-item strong { font-size: .95rem; font-weight: 500; color: var(--warm-900); }
+.trust-item span  { font-size: .78rem; color: var(--warm-400); }
+.trust-divider { width: 1px; height: 32px; background: var(--sand-300); }
+
+/* visual side */
+.hero__visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+}
+
+.hero__orb {
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #D5E8DC 0%, var(--accent-light) 100%);
+  opacity: .7;
+}
+
+.hero__card-float {
+  position: absolute;
+  background: rgba(250,248,245,.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--sand-200);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  max-width: 220px;
+  box-shadow: var(--shadow-card);
+  animation: float 6s ease-in-out infinite;
+}
+.card-top    { top: 0; left: -20px; animation-delay: 0s; }
+.card-bottom { bottom: 0; right: -20px; animation-delay: 3s; }
+
+.card-emoji  { font-size: 1.3rem; display: block; margin-bottom: .5rem; }
+.hero__card-float p { font-size: .82rem; line-height: 1.6; color: var(--warm-800); font-style: italic; }
+.card-author { font-size: .72rem; color: var(--warm-400); margin-top: .5rem; display: block; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+/* fade-in on load */
+.hero__content > * { opacity: 0; animation: fadeUp .7s ease forwards; }
+.hero__content > *:nth-child(1) { animation-delay: .1s; }
+.hero__content > *:nth-child(2) { animation-delay: .22s; }
+.hero__content > *:nth-child(3) { animation-delay: .34s; }
+.hero__content > *:nth-child(4) { animation-delay: .46s; }
+.hero__content > *:nth-child(5) { animation-delay: .58s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .hero__inner { grid-template-columns: 1fr; }
+  .hero__visual { display: none; }
+  .trust-divider { display: none; }
+}
+</style>

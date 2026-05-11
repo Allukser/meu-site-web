@@ -1,0 +1,177 @@
+---
+const depoimentos = [
+  {
+    inicial: "M",
+    nome: "Mariana S.",
+    idade: "32 anos",
+    antes: "Vivia em piloto automático, ansiosa com tudo e sem conseguir descansar de verdade.",
+    depois: "Hoje reconheço meus gatilhos antes de explodir. A terapia me deu ferramentas que uso todo dia.",
+    tempo: "8 meses de processo",
+    cor: "#EAF3DE",
+  },
+  {
+    inicial: "R",
+    nome: "Rafael T.",
+    idade: "27 anos",
+    antes: "Me sentia travado — sabia o que precisava mudar mas não conseguia sair do lugar.",
+    depois: "Descobri padrões que eu nem sabia que tinham. Hoje faço escolhas conscientes, não só reativas.",
+    tempo: "6 meses de processo",
+    cor: "#F0D5C8",
+  },
+  {
+    inicial: "C",
+    nome: "Carla M.",
+    idade: "41 anos",
+    antes: "Minha autoestima estava no chão depois do fim de um relacionamento longo.",
+    depois: "Me reconheci de novo. Aprendi que preciso ser minha prioridade — e isso não é egoísmo.",
+    tempo: "1 ano de processo",
+    cor: "#E6F1FB",
+  },
+  {
+    inicial: "B",
+    nome: "Bruno A.",
+    idade: "35 anos",
+    antes: "Tinha síndrome do impostor constante no trabalho. Qualquer elogio soava falso.",
+    depois: "Entendi de onde vinha esse padrão. Hoje aceito reconhecimento sem desconstruir tudo.",
+    tempo: "5 meses de processo",
+    cor: "#EEEDFE",
+  },
+];
+---
+<section class="depoimentos section" id="depoimentos">
+  <div class="container">
+    <div class="dep__header">
+      <span class="tag">Histórias reais</span>
+      <div class="divider"></div>
+      <h2 class="section-heading">
+        Quem deu o primeiro<br>
+        passo, <em>não voltou atrás</em>
+      </h2>
+      <p class="section-sub">
+        Cada história é única. Esses são pacientes reais que permitiram compartilhar 
+        o que a terapia transformou na vida deles.
+      </p>
+    </div>
+
+    <div class="dep__grid">
+      {depoimentos.map((d) => (
+        <article class="dep-card" style={`--dep-cor: ${d.cor}`}>
+          <div class="dep-card__header">
+            <div class="dep-avatar" aria-hidden="true">{d.inicial}</div>
+            <div>
+              <strong class="dep-nome">{d.nome}</strong>
+              <span class="dep-meta">{d.idade} · {d.tempo}</span>
+            </div>
+          </div>
+
+          <div class="dep-antes">
+            <span class="dep-label dep-label--antes">Antes</span>
+            <p>"{d.antes}"</p>
+          </div>
+
+          <div class="dep-arrow" aria-hidden="true">↓</div>
+
+          <div class="dep-depois">
+            <span class="dep-label dep-label--depois">Hoje</span>
+            <p>"{d.depois}"</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <p class="dep__disclaimer">
+      * Nomes alterados para preservar privacidade. Relatos compartilhados com autorização.
+    </p>
+  </div>
+</section>
+
+<style>
+.dep__header { max-width: 540px; margin-bottom: 3.5rem; }
+
+.dep__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.dep-card {
+  background: var(--sand-50);
+  border: 1px solid var(--sand-200);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: transform .25s, box-shadow .25s;
+  position: relative;
+  overflow: hidden;
+}
+.dep-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--dep-cor);
+  filter: brightness(.85);
+}
+.dep-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+
+.dep-card__header { display: flex; align-items: center; gap: .85rem; }
+
+.dep-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--dep-cor);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--sage-700);
+  font-weight: 400;
+  flex-shrink: 0;
+}
+
+.dep-nome { display: block; font-size: .92rem; font-weight: 500; color: var(--warm-900); }
+.dep-meta { font-size: .75rem; color: var(--warm-400); }
+
+.dep-antes, .dep-depois {
+  padding: 1rem;
+  border-radius: var(--radius-md);
+}
+.dep-antes { background: var(--sand-100); border: 1px solid var(--sand-200); }
+.dep-depois { background: var(--dep-cor); border: 1px solid transparent; }
+
+.dep-antes p, .dep-depois p {
+  font-size: .9rem;
+  color: var(--warm-700, var(--warm-800));
+  line-height: 1.7;
+  font-style: italic;
+  margin-top: .4rem;
+}
+
+.dep-label {
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+.dep-label--antes { color: var(--warm-400); }
+.dep-label--depois { color: var(--sage-600); }
+
+.dep-arrow {
+  text-align: center;
+  color: var(--warm-300, var(--warm-400));
+  font-size: 1.1rem;
+}
+
+.dep__disclaimer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: .78rem;
+  color: var(--warm-400);
+}
+
+@media (max-width: 720px) { .dep__grid { grid-template-columns: 1fr; } }
+</style>

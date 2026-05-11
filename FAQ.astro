@@ -1,0 +1,164 @@
+---
+const faqs = [
+  {
+    q: "Terapia é só para quem tem problema grave?",
+    a: "Não. A terapia é para qualquer pessoa que queira se conhecer melhor, lidar com emoções difíceis ou simplesmente funcionar com mais leveza no dia a dia. Você não precisa estar em crise para buscar ajuda — aliás, quanto mais cedo, melhor.",
+  },
+  {
+    q: "Quanto tempo dura o processo terapêutico?",
+    a: "Depende de cada pessoa e de seus objetivos. Alguns processos duram alguns meses; outros se estendem por anos. O que importa é que você sinta progresso e que o processo faça sentido para a sua vida. Não existe um prazo fixo — você decide junto comigo.",
+  },
+  {
+    q: "Como funciona o atendimento online? É tão eficaz quanto o presencial?",
+    a: "Sim. Estudos mostram que a terapia online tem a mesma eficácia que a presencial. As sessões acontecem por videochamada, em um horário combinado, no conforto e na privacidade do seu ambiente. Muitos pacientes, inclusive, preferem o online.",
+  },
+  {
+    q: "O que acontece na primeira sessão?",
+    a: "A primeira sessão é de acolhimento e escuta. Você conta o que está sentindo, o que te trouxe até aqui, e eu ouço com atenção. Sem pressão, sem roteiros rígidos. Ao final, conversamos sobre como podemos trabalhar juntos.",
+  },
+  {
+    q: "Minha privacidade é garantida?",
+    a: "100%. O sigilo é um princípio ético fundamental da psicologia. Tudo o que você compartilhar nas sessões é completamente confidencial. Jamais compartilho informações com terceiros sem sua autorização explícita.",
+  },
+  {
+    q: "Como faço para agendar?",
+    a: "É simples: mande uma mensagem pelo WhatsApp. Vou responder em até 24 horas para conversarmos sobre disponibilidade e dar os próximos passos.",
+  },
+];
+---
+<section class="faq section" id="faq">
+  <div class="container faq__inner">
+
+    <div class="faq__header">
+      <span class="tag">Dúvidas frequentes</span>
+      <div class="divider"></div>
+      <h2 class="section-heading">
+        Antes de começar,<br>
+        vamos tirar suas <em>dúvidas</em>
+      </h2>
+      <p class="section-sub">
+        É normal ter perguntas. Aqui estão as mais comuns 
+        de quem está considerando começar a terapia.
+      </p>
+    </div>
+
+    <div class="faq__list" role="list">
+      {faqs.map((f, i) => (
+        <div class="faq-item" role="listitem">
+          <button
+            class="faq-q"
+            aria-expanded="false"
+            aria-controls={`faq-ans-${i}`}
+            id={`faq-btn-${i}`}
+          >
+            <span>{f.q}</span>
+            <svg class="faq-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div
+            class="faq-a"
+            id={`faq-ans-${i}`}
+            role="region"
+            aria-labelledby={`faq-btn-${i}`}
+            hidden
+          >
+            <p>{f.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+.faq__inner {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.faq-item {
+  border: 1px solid var(--sand-200);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--sand-50);
+  transition: border-color .2s;
+}
+.faq-item:has(.faq-q[aria-expanded="true"]) {
+  border-color: var(--sage-400);
+  background: #fff;
+}
+
+.faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  font-size: .97rem;
+  font-weight: 500;
+  color: var(--warm-900);
+  text-align: left;
+  transition: background .2s, color .2s;
+}
+.faq-q:hover { color: var(--sage-600); }
+.faq-q[aria-expanded="true"] { color: var(--sage-700); }
+
+.faq-icon {
+  width: 18px; height: 18px;
+  flex-shrink: 0;
+  color: var(--warm-400);
+  transition: transform .3s ease;
+}
+.faq-q[aria-expanded="true"] .faq-icon { transform: rotate(180deg); color: var(--sage-500); }
+
+.faq-a {
+  padding: 0 1.25rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .35s ease, padding .3s;
+}
+.faq-a:not([hidden]) {
+  max-height: 300px;
+  padding: 0 1.25rem 1.25rem;
+}
+.faq-a p { font-size: .93rem; color: var(--warm-600); line-height: 1.8; }
+
+@media (max-width: 900px) {
+  .faq__inner { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+</style>
+
+<script>
+document.querySelectorAll<HTMLButtonElement>('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    const answerId = btn.getAttribute('aria-controls')!;
+    const answer = document.getElementById(answerId)!;
+
+    if (expanded) {
+      btn.setAttribute('aria-expanded', 'false');
+      answer.hidden = true;
+    } else {
+      // close others
+      document.querySelectorAll('.faq-q[aria-expanded="true"]').forEach(other => {
+        other.setAttribute('aria-expanded', 'false');
+        const oid = other.getAttribute('aria-controls')!;
+        document.getElementById(oid)!.hidden = true;
+      });
+      btn.setAttribute('aria-expanded', 'true');
+      answer.hidden = false;
+    }
+  });
+});
+</script>

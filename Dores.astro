@@ -1,0 +1,113 @@
+---
+const dores = [
+  {
+    icon: "🌀",
+    titulo: "Ansiedade que não passa",
+    desc: "Aquela tensão constante no peito, o coração acelerado sem motivo, os pensamentos que não deixam descansar. Parece que o seu corpo vive em estado de alerta — mesmo quando tudo está bem.",
+    cor: "#EAF3DE",
+  },
+  {
+    icon: "🔋",
+    titulo: "Exaustão emocional",
+    desc: "Você faz tudo certo mas ainda se sente vazio. O trabalho consome, os relacionamentos cobram, e no fim do dia não sobra nada para você. Burnout não é fraqueza — é um sinal.",
+    cor: "#F0D5C8",
+  },
+  {
+    icon: "🔁",
+    titulo: "Padrões que se repetem",
+    desc: "Relacionamentos que terminam da mesma forma, reações que você não consegue controlar, a sensação de sabotagem própria. Quando percebemos esses ciclos, já é possível mudá-los.",
+    cor: "#E1F5EE",
+  },
+];
+---
+<section class="dores section" id="voce-se-identifica">
+  <div class="container">
+    <div class="dores__header">
+      <span class="tag">Você se identifica?</span>
+      <div class="divider"></div>
+      <h2 class="section-heading">
+        Às vezes a gente carrega<br>
+        mais do que <em>deveria</em>
+      </h2>
+      <p class="section-sub">
+        Reconhecer o que está pesando é o primeiro passo. 
+        Se alguma dessas situações soa familiar, você não está sozinho.
+      </p>
+    </div>
+
+    <div class="dores__grid">
+      {dores.map((d, i) => (
+        <article class="dor-card" style={`--card-color: ${d.cor}`} data-index={i}>
+          <div class="dor-card__icon">{d.icon}</div>
+          <h3 class="dor-card__title">{d.titulo}</h3>
+          <p class="dor-card__text">{d.desc}</p>
+          <div class="dor-card__bar" aria-hidden="true"></div>
+        </article>
+      ))}
+    </div>
+
+    <p class="dores__callout">
+      Se você leu isso e pensou <em>"sou eu"</em> — a terapia pode ser o espaço que falta na sua vida.
+    </p>
+  </div>
+</section>
+
+<style>
+.dores__header { max-width: 560px; margin-bottom: 3.5rem; }
+
+.dores__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.dor-card {
+  position: relative;
+  background: var(--card-color);
+  border: 1px solid rgba(0,0,0,.07);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.75rem 2.25rem;
+  overflow: hidden;
+  transition: transform .25s, box-shadow .25s;
+}
+.dor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-card);
+}
+
+.dor-card__icon { font-size: 2rem; margin-bottom: 1rem; }
+.dor-card__title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--warm-900);
+  margin-bottom: .75rem;
+}
+.dor-card__text {
+  font-size: .93rem;
+  color: var(--warm-700, var(--warm-800));
+  line-height: 1.75;
+}
+
+.dor-card__bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--sage-400), transparent);
+  opacity: 0;
+  transition: opacity .25s;
+}
+.dor-card:hover .dor-card__bar { opacity: 1; }
+
+.dores__callout {
+  margin-top: 3rem;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--warm-600);
+}
+.dores__callout em { color: var(--sage-600); font-style: italic; }
+
+@media (max-width: 900px) { .dores__grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .dores__grid { grid-template-columns: 1fr; } }
+</style>
