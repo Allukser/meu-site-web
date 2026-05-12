@@ -150,7 +150,6 @@ document.querySelectorAll<HTMLButtonElement>('.faq-q').forEach(btn => {
       btn.setAttribute('aria-expanded', 'false');
       answer.hidden = true;
     } else {
-      // close others
       document.querySelectorAll('.faq-q[aria-expanded="true"]').forEach(other => {
         other.setAttribute('aria-expanded', 'false');
         const oid = other.getAttribute('aria-controls')!;
