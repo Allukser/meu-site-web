@@ -140,24 +140,40 @@ const faqs = [
 </style>
 
 <script>
-document.querySelectorAll<HTMLButtonElement>('.faq-q').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const expanded = btn.getAttribute('aria-expanded') === 'true';
-    const answerId = btn.getAttribute('aria-controls')!;
-    const answer = document.getElementById(answerId)!;
+function initFaq() {
+  document.querySelectorAll<HTMLButtonElement>('.faq-q').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const answerId = btn.getAttribute('aria-controls')!;
+      const answer = document.getElementById(answerId)!;
 
-    if (expanded) {
-      btn.setAttribute('aria-expanded', 'false');
-      answer.hidden = true;
-    } else {
-      document.querySelectorAll('.faq-q[aria-expanded="true"]').forEach(other => {
-        other.setAttribute('aria-expanded', 'false');
-        const oid = other.getAttribute('aria-controls')!;
-        document.getElementById(oid)!.hidden = true;
-      });
-      btn.setAttribute('aria-expanded', 'true');
-      answer.hidden = false;
-    }
+      if (expanded) {
+        btn.setAttribute('aria-expanded', 'false');
+        answer.hidden = true;
+      } else {
+        document.querySelectorAll('.faq-q[aria-expanded="true"]').forEach((other) => {
+          other.setAttribute('aria-expanded', 'false');
+          const oid = other.getAttribute('aria-controls')!;
+          document.getElementById(oid)!.hidden = true;
+        });
+        btn.setAttribute('aria-expanded', 'true');
+        answer.hidden = false;
+      }
+    });
   });
-});
+}
+
+function scheduleIdle(fn: () => void) {
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(fn, { timeout: 2000 });
+  } else {
+    setTimeout(fn, 1);
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => scheduleIdle(initFaq));
+} else {
+  scheduleIdle(initFaq);
+}
 </script>

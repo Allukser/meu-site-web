@@ -89,6 +89,12 @@ const WA_LINK = "https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agen
     font-size: 1rem;
   }
   .nav__cta.open { display: inline-flex; margin: 0 1.5rem 1.5rem; }
+
+  .nav {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--sand-50);
+  }
 }
 </style>
 
@@ -98,9 +104,20 @@ const hamburger = document.getElementById('hamburger')!;
 const links = document.querySelector('.nav__links') as HTMLElement;
 const cta = document.querySelector('.nav__cta') as HTMLElement;
 
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 20);
-});
+let scrollTicking = false;
+window.addEventListener(
+  'scroll',
+  () => {
+    if (!scrollTicking) {
+      scrollTicking = true;
+      requestAnimationFrame(() => {
+        nav.classList.toggle('scrolled', window.scrollY > 20);
+        scrollTicking = false;
+      });
+    }
+  },
+  { passive: true },
+);
 
 hamburger.addEventListener('click', () => {
   const open = links.classList.toggle('open');

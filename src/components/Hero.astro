@@ -74,7 +74,7 @@ const WA_LINK = "https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agen
 .hero__bg-circles { position: absolute; inset: 0; pointer-events: none; }
 .circle {
   position: absolute; border-radius: 50%;
-  filter: blur(80px); opacity: .55;
+  filter: blur(48px); opacity: .45;
 }
 .c1 { width: 520px; height: 520px; background: var(--accent-light); top: -100px; right: -120px; }
 .c2 { width: 380px; height: 380px; background: #D5E8DC; bottom: -60px; left: -80px; }
@@ -175,16 +175,24 @@ const WA_LINK = "https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agen
   50%       { transform: translateY(-12px); }
 }
 
-/* fade-in on load */
-.hero__content > * { opacity: 0; animation: fadeUp .7s ease forwards; }
-.hero__content > *:nth-child(1) { animation-delay: .1s; }
-.hero__content > *:nth-child(2) { animation-delay: .22s; }
-.hero__content > *:nth-child(3) { animation-delay: .34s; }
-.hero__content > *:nth-child(4) { animation-delay: .46s; }
-.hero__content > *:nth-child(5) { animation-delay: .58s; }
+/* Conteúdo acima da dobra visível de imediato (LCP/FCP). Só CTAs e bloco de confiança animam. */
+.hero__content > .tag,
+.hero__content > .hero__heading,
+.hero__content > .hero__sub {
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+.hero__actions,
+.hero__trust {
+  opacity: 0;
+  animation: fadeUp .45s ease forwards;
+}
+.hero__actions { animation-delay: .04s; }
+.hero__trust { animation-delay: .12s; }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(18px); }
+  from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
@@ -192,5 +200,6 @@ const WA_LINK = "https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agen
   .hero__inner { grid-template-columns: 1fr; }
   .hero__visual { display: none; }
   .trust-divider { display: none; }
+  .hero__bg-circles { display: none; }
 }
 </style>
