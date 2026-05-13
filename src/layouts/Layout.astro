@@ -36,8 +36,98 @@ const fontsHref =
     <meta property="og:description" content={description} />
     <meta property="og:locale" content="pt_BR" />
     {canonical && <meta property="og:url" content={canonical} />}
+
+    <!-- ─── GCLID: captura imediata do parâmetro de URL ─────────────────── -->
+    <script is:inline>
+      (function () {
+        try {
+          var gclid = new URLSearchParams(window.location.search).get('gclid');
+          if (gclid) {
+            localStorage.setItem('_gc', JSON.stringify({
+              gclid:  gclid,
+              ts:     Date.now(),
+              lp:     window.location.pathname,
+              synced: false          // será marcado true após migração ao Worker
+            }));
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <slot />
+
+    <!-- ─── GCLID: migração para storage + tracking de cliques WA ─────── -->
+    <script is:inline>
+      (function () {
+        /* ⚠️  Após criar o Worker, substitua pela URL real               */
+        var ENDPOINT = 'https://gclid.roangela-psicologa.workers.dev/lead';
+        var TTL_MS   = 90 * 24 * 60 * 60 * 1000; // 90 dias
+
+        /* ── Helpers ──────────────────────────────────────────────────── */
+        function readGc() {
+          try {
+            var d = JSON.parse(localStorage.getItem('_gc') || 'null');
+            if (!d) return null;
+            if (Date.now() - d.ts > TTL_MS) { localStorage.removeItem('_gc'); return null; }
+            return d;
+          } catch (e) { return null; }
+        }
+
+        function beacon(payload) {
+          var body = JSON.stringify(payload);
+          try {
+            if (navigator.sendBeacon) {
+              navigator.sendBeacon(ENDPOINT, new Blob([body], { type: 'application/json' }));
+            } else {
+              fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body, keepalive: true }).catch(Object);
+            }
+          } catch (e) {}
+        }
+
+        /* ── 1. MIGRAÇÃO PASSIVA ──────────────────────────────────────── */
+        /* Roda em idle: persiste o GCLID no Worker mesmo sem clique WA   */
+        function passiveSync() {
+          var gc = readGc();
+          if (!gc || gc.synced) return;
+          beacon({ gclid: gc.gclid, captured_at: gc.ts, clicked_at: Date.now(),
+                   landing_page: gc.lp, source: 'page_view', event_type: 'page_view' });
+          try { gc.synced = true; localStorage.setItem('_gc', JSON.stringify(gc)); } catch (e) {}
+        }
+
+        /* ── 2. CLIQUE NO WHATSAPP ────────────────────────────────────── */
+        function onWaClick(e) {
+          var el  = e.currentTarget;
+          var gc  = readGc();
+          if (gc) {
+            var sec = el.closest('section, header, footer');
+            beacon({ gclid: gc.gclid, captured_at: gc.ts, clicked_at: Date.now(),
+                     landing_page: gc.lp,
+                     source:       sec ? (sec.id || sec.tagName.toLowerCase()) : 'float',
+                     event_type:   'wa_click' });
+          }
+          /* Abre WhatsApp independente de GCLID */
+          var href = el.getAttribute('href');
+          if (href) { e.preventDefault(); window.open(href, '_blank', 'noopener'); }
+        }
+
+        /* ── 3. INIT ──────────────────────────────────────────────────── */
+        function init() {
+          /* Migração passiva em idle — sem impacto no LCP */
+          ('requestIdleCallback' in window)
+            ? requestIdleCallback(passiveSync, { timeout: 4000 })
+            : setTimeout(passiveSync, 1500);
+
+          /* Intercepta todos os botões wa.me */
+          document.querySelectorAll('a[href*="wa.me"]').forEach(function (el) {
+            el.addEventListener('click', onWaClick);
+          });
+        }
+
+        document.readyState === 'loading'
+          ? document.addEventListener('DOMContentLoaded', init)
+          : init();
+      })();
+    </script>
   </body>
 </html>

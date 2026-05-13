@@ -23,7 +23,7 @@ call npm run build
 if %errorlevel% neq 0 exit /b 1
 
 echo [3/3] Wrangler pages deploy...
-if "%CF_PAGES_PROJECT%"=="" set CF_PAGES_PROJECT=meu-site-web
+if "%CF_PAGES_PROJECT%"=="" set CF_PAGES_PROJECT=psicologa-roangela-site-astro-cflare
 call npx wrangler pages deploy dist --project-name "%CF_PAGES_PROJECT%" --branch main
 if %errorlevel% neq 0 exit /b 1
 

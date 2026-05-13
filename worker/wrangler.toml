@@ -1,0 +1,16 @@
+name            = "roangela-gclid"
+main            = "index.js"
+compatibility_date = "2024-09-23"
+
+# KV namespace para armazenar os leads com GCLID
+# Crie com: npx wrangler kv namespace create "GCLID_KV"
+# e cole o id retornado abaixo
+[[kv_namespaces]]
+binding = "GCLID_KV"
+id      = "SUBSTITUA_PELO_ID_DO_KV_NAMESPACE"
+
+# Variáveis de ambiente
+[vars]
+ALLOWED_ORIGIN   = "https://roangela-psicologa.com.br"
+# URL do Google Apps Script Web App (preencher após deploy do Apps Script)
+APPS_SCRIPT_URL  = "SUBSTITUA_PELA_URL_DO_APPS_SCRIPT"

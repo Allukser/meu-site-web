@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "psicorr2025",
+  "name": "psicologa-roangela-site-astro-cflare",
   "compatibility_date": "2025-05-12",
   "assets": {
     "directory": "./dist"
