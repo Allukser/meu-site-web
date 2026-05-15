@@ -7,10 +7,10 @@ compatibility_date = "2024-09-23"
 # e cole o id retornado abaixo
 [[kv_namespaces]]
 binding = "GCLID_KV"
-id      = "SUBSTITUA_PELO_ID_DO_KV_NAMESPACE"
+id      = "9979552f4a1c4113a1e868353719a103"
 
 # Variáveis de ambiente
 [vars]
 ALLOWED_ORIGIN   = "https://roangela-psicologa.com.br"
 # URL do Google Apps Script Web App (preencher após deploy do Apps Script)
-APPS_SCRIPT_URL  = "SUBSTITUA_PELA_URL_DO_APPS_SCRIPT"
+APPS_SCRIPT_URL  = "https://script.google.com/macros/s/AKfycbxX46q6VVJVFcGwUbZ6K6DPPZ2368qaO1d5_8tp4VyX1vJEei5Md61Ul36QIyLx1Rlq/exec"

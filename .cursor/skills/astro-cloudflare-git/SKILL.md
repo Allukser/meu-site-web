@@ -59,6 +59,40 @@ description: >-
 - Não expor segredos em repositórios públicos; rotação de tokens se algo tiver sido commitado por engano.
 - HTTPS e domínio customizado configurados no painel após o primeiro deploy bem-sucedido.
 
+## Painel Cloudflare — o que confirmar (valores de referência do repo)
+
+Usa esta tabela no painel (Pages com Git ou build remoto) e marca cada linha quando estiver alinhado com o que o repositório assume. Não é possível validar o painel a partir do Git; serve de **checklist manual**.
+
+| Campo | Valor esperado (este projeto) | Notas |
+| --- | --- | --- |
+| **Build command** | `npm run build` | `package.json`: `astro build && node ./scripts/verify-dist.mjs`. Só usar `bun run build` se existir `bun.lockb` commitado e CI coerente. |
+| **Output directory** | `dist` | Astro estático; `wrangler.jsonc` na raiz usa `assets.directory`: `./dist` para deploy via Worker com assets. |
+| **Root directory** | raiz do repositório (onde está o `package.json`) | Não é monorepo de frontend. |
+| **Deploy command (Pages)** | vazio | Skill: com só Pages a servir `dist`, o upload segue o build; evitar duplicar `wrangler deploy` no painel se já houver pipeline separado. |
+| **Node (CI / Pages)** | compatível com Wrangler em `devDependencies` | Wrangler **4.86.0** fixo: adequado a **Node 20** no build (Wrangler ≥ 4.87 pede Node ≥ 22). |
+| **`public/.assetsignore`** | existe (pode ser só comentários) | Satisfeito no repo. |
+
+**Lockfile:** o repositório pode não incluir `package-lock.json` nem `bun.lockb`. Para builds reprodutíveis (skill), convém **commitar um lockfile** e usar sempre o mesmo gestor no CI (`npm ci` ou `bun install`).
+
+**Dois fluxos Wrangler:** na raiz, `wrangler.jsonc` serve o site estático em `dist`. A pasta `worker/` é um Worker à parte (ex.: GCLID) com `worker/wrangler.toml` — não misturar nome de projeto nem comando de deploy no painel.
+
+## Melhorias de performance (PSI / Lighthouse) vs código atual — prioridades
+
+Comparar sempre com um relatório real em [PageSpeed Insights](https://pagespeed.web.dev/) na URL **em que o site está a ser testado** (produção no domínio de `astro.config.mjs` → `site`, ou pré-visualização num Worker, por exemplo `https://psicorr2025.alukser.workers.dev/`). O PSI **ignora o fragmento** (`#como-funciona`); para o mesmo HTML estático o relatório equivale à raiz. Enquanto isso, estes são os alvos mais prováveis face ao código atual:
+
+1. **Fontes (terceiro Google):** `Layout.astro` ainda carrega CSS das Google Fonts; no lab costuma aparecer rede de terceiros / cadeia crítica. **Ganho típico:** self-host `woff2`, `@font-face` e `font-display: swap` (ou subset mínimo).
+2. **JS inline no `<body>`:** scripts GCLID/WhatsApp no layout executam após o parse; estão parcialmente adiados (`requestIdleCallback`), mas **reduzir** ou **dividir** lógica não essencial continua a ajudar TBT/INP no lab.
+3. **CSS global:** um único `global.css` pode gerar **“unused CSS”** no Lighthouse para rotas com poucos componentes. **Ganho:** dividir por secção ou aceitar trade-off até o relatório acusar valor alto.
+4. **Efeitos visuais no hero:** círculos com `filter: blur` e camadas decorativas aumentam custo de pintura em dispositivos fracos. Já houve simplificação; reavaliar se o PSI ainda acusa **LCP** ou **long task** ligado a pintura.
+5. **Imagens LCP futuras:** o hero é sobretudo texto; se entrar **foto** no LCP, usar formato moderno, `width`/`height`, `fetchpriority="high"` e não lazy na imagem LCP.
+
+## Validação PageSpeed Insights após deploy
+
+1. Abrir [PageSpeed Insights](https://pagespeed.web.dev/) e colar a URL base do deploy a analisar (ex.: `https://psicorr2025.alukser.workers.dev/` ou o domínio em `astro.config.mjs` → `site`). Não contar com o hash na análise: use `…/workers.dev/` ou `…/pagina` sem `#…`.
+2. Correr **Mobile** e **Desktop** separadamente; anotar data e (se possível) o mesmo perfil de rede para comparar relatórios no tempo.
+3. Registar **LCP** (elemento no detalhe), **CLS**, **INP** (campo, quando existir), **FCP**, **Speed Index**, e a lista de **Oportunidades** / **Diagnósticos**.
+4. A API pública `pagespeedonline` pode responder **429**; nesse caso repetir mais tarde ou usar o relatório no browser.
+
 ## Checklist rápido antes do primeiro deploy
 
 - [ ] `npm run build` ou `bun run build` passa localmente.
