@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://roangela-psicologa.com.br',
+  site: 'https://psicorosangelarocha.com',
   output: 'static',
   srcDir: 'src',
   compressHTML: true,
