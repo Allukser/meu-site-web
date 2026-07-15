@@ -4,6 +4,11 @@ dist/
 .DS_Store
 Thumbs.db
 *.log
+# Claude Watcher (local only — não vai para o git)
+TASK.md
+RESULT.md
+watcher.js
+setup-watcher.bat
 .env
 .env.*
 !.env.example
