@@ -1,0 +1,16 @@
+# robots.txt — psicorosangelarocha.com
+
+# ── Crawlers gerais ─────────────────────────────────────────────────────────
+User-agent: *
+Allow: /
+
+# ── AdsBot-Google (avalia qualidade de landing pages de anúncios) ──────────
+# Permissão explícita acelera a revisão de qualidade (Quality Score 10/10)
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: AdsBot-Google-Mobile
+Allow: /
+
+# ── Sitemap (adicionar após integração @astrojs/sitemap) ───────────────────
+# Sitemap: https://psicorosangelarocha.com/sitemap-index.xml

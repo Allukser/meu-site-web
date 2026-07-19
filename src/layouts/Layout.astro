@@ -10,6 +10,65 @@ const {
 } = Astro.props;
 
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const ogImage   = Astro.site ? new URL('/og-image.svg', Astro.site).href : undefined;
+
+/* ── Schema.org — sinaliza ao crawler o contexto profissional de saúde ──
+   MedicalBusiness + Person → classificação imediata sem parse de conteúdo  */
+const schemaOrg = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["MedicalBusiness", "LocalBusiness"],
+      "@id": "https://psicorosangelarocha.com/#practice",
+      "name": "Roangela Rocha — Psicóloga",
+      "description": "Psicoterapia individual online e presencial focada em bem-estar emocional e autoconhecimento. Profissional licenciada CRP 06-143094.",
+      "url": "https://psicorosangelarocha.com",
+      "image": ogImage,
+      "priceRange": "$$",
+      "areaServed": { "@type": "Country", "name": "Brazil" },
+      "employee": { "@id": "https://psicorosangelarocha.com/#roangela" },
+      "availableService": [
+        {
+          "@type": "MedicalProcedure",
+          "name": "Psicoterapia Individual Online",
+          "procedureType": "TherapeuticProcedure",
+          "description": "Sessões de psicoterapia por videochamada com psicóloga credenciada CRP 06-143094."
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "Psicoterapia Individual Presencial",
+          "procedureType": "TherapeuticProcedure",
+          "description": "Sessões de psicoterapia presenciais com psicóloga credenciada CRP 06-143094."
+        }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://psicorosangelarocha.com/#roangela",
+      "name": "Roangela Rocha",
+      "jobTitle": "Psicóloga",
+      "url": "https://psicorosangelarocha.com",
+      "hasCredential": {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "license",
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": "Conselho Regional de Psicologia",
+          "alternateName": "CRP 06"
+        },
+        "identifier": "CRP 06-143094"
+      },
+      "worksFor": { "@id": "https://psicorosangelarocha.com/#practice" },
+      "knowsAbout": [
+        "Psicoterapia Cognitivo-Comportamental",
+        "Ansiedade",
+        "Autoconhecimento",
+        "Bem-estar emocional",
+        "Relacionamentos interpessoais"
+      ]
+    }
+  ]
+};
 ---
 <!doctype html>
 <html lang="pt-BR">
@@ -99,6 +158,13 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : un
     <meta property="og:description" content={description} />
     <meta property="og:locale" content="pt_BR" />
     {canonical && <meta property="og:url" content={canonical} />}
+    {ogImage   && <meta property="og:image" content={ogImage} />}
+    {ogImage   && <meta property="og:image:width" content="1200" />}
+    {ogImage   && <meta property="og:image:height" content="630" />}
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- ─── Schema.org JSON-LD — classificação imediata pelo crawler ──────── -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
 
     <!-- ─── GCLID: captura imediata do parâmetro de URL ─────────────────── -->
     <script is:inline>

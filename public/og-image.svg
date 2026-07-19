@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FAF8F5"/>
+      <stop offset="100%" style="stop-color:#F3EFE8"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3D6454"/>
+      <stop offset="100%" style="stop-color:#5E8070"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="970" cy="90"  r="290" fill="#D5E8DC" opacity="0.4"/>
+  <circle cx="1110" cy="510" r="185" fill="#F0D5C8" opacity="0.35"/>
+  <circle cx="70"  cy="530" r="145" fill="#D5E8DC"  opacity="0.3"/>
+
+  <!-- Left accent bar -->
+  <rect x="80" y="178" width="4" height="120" rx="2" fill="url(#acc)"/>
+
+  <!-- Name -->
+  <text x="110" y="242" font-family="Georgia, 'Times New Roman', serif" font-size="58" fill="#1A1612" letter-spacing="-0.5">Roangela Rocha</text>
+
+  <!-- Title -->
+  <text x="110" y="298" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-style="italic" fill="#5E8070">Psicóloga</text>
+
+  <!-- Divider -->
+  <rect x="110" y="325" width="56" height="2" rx="1" fill="#7C9A8A"/>
+
+  <!-- Description lines -->
+  <text x="110" y="370" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#6B5E50">Psicoterapia online e presencial com acolhimento,</text>
+  <text x="110" y="403" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#6B5E50">técnica e sem julgamentos.</text>
+
+  <!-- CRP badge -->
+  <rect x="110" y="440" width="228" height="46" rx="23" fill="#3D6454"/>
+  <text x="224" y="470" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" fill="#fff" text-anchor="middle" letter-spacing="0.5">CRP 06-143094</text>
+
+  <!-- Mode badges -->
+  <rect x="356" y="440" width="154" height="46" rx="23" fill="#F3EFE8" stroke="#D5C9B5" stroke-width="1.5"/>
+  <text x="433" y="470" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#6B5E50" text-anchor="middle">💻 Online</text>
+
+  <rect x="522" y="440" width="168" height="46" rx="23" fill="#F3EFE8" stroke="#D5C9B5" stroke-width="1.5"/>
+  <text x="606" y="470" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#6B5E50" text-anchor="middle">🏥 Presencial</text>
+
+  <!-- Domain watermark -->
+  <text x="1118" y="601" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#A8998A" text-anchor="end">psicorosangelarocha.com</text>
+</svg>

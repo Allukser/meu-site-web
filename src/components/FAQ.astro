@@ -1,4 +1,6 @@
 ---
+/* ── FAQPage Schema.org — respostas reconhecidas como informacionais,
+   não como afirmações de tratamento médico (Google Ads policy shield)    */
 const faqs = [
   {
     q: "Terapia é só para quem tem problema grave?",
@@ -25,7 +27,18 @@ const faqs = [
     a: "É simples: mande uma mensagem pelo WhatsApp. Vou responder em até 24 horas para conversarmos sobre disponibilidade e dar os próximos passos.",
   },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+};
 ---
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 <section class="faq section" id="faq">
   <div class="container faq__inner">
 

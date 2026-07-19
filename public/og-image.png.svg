@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FAF8F5"/>
+      <stop offset="100%" style="stop-color:#F3EFE8"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3D6454"/>
+      <stop offset="100%" style="stop-color:#5E8070"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Decorative circle -->
+  <circle cx="950" cy="100" r="280" fill="#D5E8DC" opacity="0.4"/>
+  <circle cx="1100" cy="500" r="180" fill="#F0D5C8" opacity="0.35"/>
+  <circle cx="80" cy="520" r="140" fill="#D5E8DC" opacity="0.3"/>
+
+  <!-- Left accent bar -->
+  <rect x="80" y="180" width="4" height="120" rx="2" fill="url(#accent)"/>
+
+  <!-- Name -->
+  <text x="110" y="240" font-family="Georgia, serif" font-size="56" font-weight="400" fill="#1A1612" letter-spacing="-0.5">Roangela Rocha</text>
+
+  <!-- Title -->
+  <text x="110" y="295" font-family="Georgia, serif" font-size="32" font-style="italic" fill="#5E8070">Psicóloga</text>
+
+  <!-- Description -->
+  <text x="110" y="360" font-family="Arial, sans-serif" font-size="24" fill="#6B5E50">Psicoterapia online e presencial</text>
+  <text x="110" y="395" font-family="Arial, sans-serif" font-size="24" fill="#6B5E50">com acolhimento, técnica e sem julgamentos.</text>
+
+  <!-- CRP badge -->
+  <rect x="110" y="430" width="220" height="44" rx="22" fill="#3D6454"/>
+  <text x="220" y="459" font-family="Arial, sans-serif" font-size="18" font-weight="600" fill="#fff" text-anchor="middle" letter-spacing="0.5">CRP 06-143094</text>
+
+  <!-- Domain -->
+  <text x="1120" y="598" font-family="Arial, sans-serif" font-size="20" fill="#A8998A" text-anchor="end">psicorosangelarocha.com</text>
+</svg>

@@ -1,0 +1,26 @@
+/*
+  # Impede MIME sniffing
+  X-Content-Type-Options: nosniff
+
+  # Anti-clickjacking
+  X-Frame-Options: SAMEORIGIN
+
+  # Controla informações de referrer
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Restringe permissões de hardware desnecessárias
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+
+  # Isola janelas abertas (compatível com window.open do WhatsApp)
+  Cross-Origin-Opener-Policy: same-origin-allow-popups
+
+  # Força HTTPS por 1 ano
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+
+  # Content Security Policy
+  # - script-src unsafe-inline: necessário para os scripts inline de GCLID
+  # - style-src unsafe-inline: necessário para o <style> das @font-face
+  # - font-src self: fontes auto-hospedadas em /fonts/
+  # - connect-src: permite chamadas ao Worker de GCLID + fetch nativo
+  # - img-src data:: permite favicons inline e imagens SVG embutidas
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://roangela-gclid.alukser.workers.dev; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self';
