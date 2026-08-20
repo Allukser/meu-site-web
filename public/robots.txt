@@ -12,5 +12,5 @@ Allow: /
 User-agent: AdsBot-Google-Mobile
 Allow: /
 
-# ── Sitemap (adicionar após integração @astrojs/sitemap) ───────────────────
-# Sitemap: https://psicorosangelarocha.com/sitemap-index.xml
+# ── Sitemap ──────────────────────────────────────────────────────────────
+Sitemap: https://psicorosangelarocha.com/sitemap.xml
