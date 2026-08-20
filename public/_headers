@@ -18,9 +18,9 @@
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 
   # Content Security Policy
-  # - script-src unsafe-inline: necessário para os scripts inline de GCLID
-  # - style-src unsafe-inline: necessário para o <style> das @font-face
+  # - script-src: SHA256 hashes dos scripts inline (GCLID tracking)
+  # - style-src unsafe-inline: necessário para o <style> das @font-face (considerar hash futuro)
   # - font-src self: fontes auto-hospedadas em /fonts/
   # - connect-src: permite chamadas ao Worker de GCLID + fetch nativo
   # - img-src data:: permite favicons inline e imagens SVG embutidas
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://roangela-gclid.alukser.workers.dev; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self';
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-mOzp8rdCJOq5Ps/31Ej4OShHNlo5LCaQ/Pmr7vEauHk=' 'sha256-29CdHwWcdZIeSqnBVEUGaFi1Zmo8WkQOjtou8v+yw+s='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; connect-src 'self' https://roangela-gclid.alukser.workers.dev; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self';
