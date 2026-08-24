@@ -12,3 +12,6 @@ setup-watcher.bat
 .env
 .env.*
 !.env.example
+
+# Git worktrees do Claude (local only - nao vai para o git)
+.claude/worktrees/
