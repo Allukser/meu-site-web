@@ -11,6 +11,6 @@ id      = "9979552f4a1c4113a1e868353719a103"
 
 # Variáveis de ambiente
 [vars]
-ALLOWED_ORIGIN   = "https://roangela-psicologa.com.br"
+ALLOWED_ORIGIN   = "https://psicorosangelarocha.com"
 # URL do Google Apps Script Web App (preencher após deploy do Apps Script)
-APPS_SCRIPT_URL  = "https://script.google.com/macros/s/AKfycbxX46q6VVJVFcGwUbZ6K6DPPZ2368qaO1d5_8tp4VyX1vJEei5Md61Ul36QIyLx1Rlq/exec"
+APPS_SCRIPT_URL  = "https://script.google.com/macros/s/AKfycbw2mCZGodw2AtzBfIBjnAtT7wfxWJwb7PCCtmq00Lbk4WDjHk4-iEiRkBRYjrQiWdsnDQ/exec"
