@@ -3,12 +3,8 @@ const WA_LINK = "https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agen
 ---
 <header class="nav">
   <div class="container nav__inner">
-    <a href="#inicio" class="nav__logo">
-      <img src="/logo.png" alt="Roangela Rocha - Psicóloga" class="nav__logo-img" />
-      <div class="nav__logo-text">
-        <span class="nav__logo-name">Roangela Rocha</span>
-        <span class="nav__logo-crp">Psicóloga · CRP 06-143094</span>
-      </div>
+    <a href="#inicio" class="nav__logo" title="Rosangela Rocha - Psicóloga">
+      <img src="/images/logo.png" alt="Rosangela Rocha - Psicóloga" class="nav__logo-img" />
     </a>
     <nav class="nav__links" aria-label="Menu principal">
       <a href="#sobre">Sobre</a>
@@ -47,36 +43,16 @@ const WA_LINK = "https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agen
 }
 
 .nav__logo {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 1rem;
-  line-height: 1.2;
   transition: opacity .2s;
 }
-.nav__logo:hover { opacity: 0.8; }
+.nav__logo:hover { opacity: 0.75; }
 
 .nav__logo-img {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
-}
-
-.nav__logo-text {
-  display: flex;
-  flex-direction: column;
-}
-
-.nav__logo-name {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  color: var(--warm-900);
-  font-weight: 500;
-}
-
-.nav__logo-crp  {
-  font-size: .65rem;
-  color: var(--warm-600);
-  letter-spacing: .05em;
 }
 
 .nav__links {
