@@ -1,0 +1,18 @@
+name = "psicologa-roangela-site-astro-cflare"
+compatibility_date = "2025-05-12"
+
+[build]
+command = "npm ci && npm run build"
+watch_paths = ["src/**/*.astro", "public/**/*"]
+cwd = "."
+
+[env.production]
+routes = [
+  { pattern = "psicorosangelarocha.com", zone_id = "prod" }
+]
+
+[observability]
+enabled = true
+
+[assets]
+directory = "./dist"

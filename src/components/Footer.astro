@@ -25,6 +25,13 @@ const WA_LINK = "https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agen
         Enviar mensagem
       </a>
     </div>
+    <div class="footer__references">
+      <strong>Confiança & Segurança</strong>
+      <a href="https://crp06.org.br" target="_blank" rel="noopener noreferrer">CRP-06 Psicologia</a>
+      <a href="https://www.serenata.org.br" target="_blank" rel="noopener noreferrer">Prevenção ao Suicídio</a>
+      <a href="https://www.tjdft.jus.br" target="_blank" rel="noopener noreferrer">Lei Maria da Penha</a>
+      <a href="#politica-privacidade">Política de Privacidade</a>
+    </div>
   </div>
   <div class="footer__bottom">
     <div class="container">
@@ -51,7 +58,7 @@ const WA_LINK = "https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agen
 
 .footer__inner {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 3rem;
   padding-bottom: 3rem;
   border-bottom: 1px solid rgba(255,255,255,.1);
@@ -66,10 +73,10 @@ const WA_LINK = "https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agen
 .footer__crp { font-size: .75rem; color: var(--sage-400); margin-bottom: 1rem; }
 .footer__desc { font-size: .88rem; line-height: 1.7; max-width: 30ch; }
 
-.footer__nav, .footer__contact {
+.footer__nav, .footer__contact, .footer__references {
   display: flex; flex-direction: column; gap: .65rem;
 }
-.footer__nav strong, .footer__contact strong {
+.footer__nav strong, .footer__contact strong, .footer__references strong {
   font-size: .8rem;
   letter-spacing: .09em;
   text-transform: uppercase;
@@ -81,7 +88,10 @@ const WA_LINK = "https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agen
   font-size: .88rem;
   transition: color .2s;
 }
-.footer__nav a:hover { color: var(--sage-400); }
+.footer__nav a:hover, .footer__references a:hover { color: var(--sage-400); }
+.footer__references a {
+  color: var(--sage-400);
+}
 
 .footer__wa {
   display: inline-flex; align-items: center; gap: .5rem;
@@ -110,6 +120,10 @@ const WA_LINK = "https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agen
   color: rgba(255,255,255,.5);
   line-height: 1.7;
   max-width: 72ch;
+}
+
+@media (max-width: 900px) {
+  .footer__inner { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
 }
 
 @media (max-width: 720px) {

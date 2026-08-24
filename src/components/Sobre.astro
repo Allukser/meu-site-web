@@ -3,11 +3,13 @@
 <section class="sobre section" id="sobre">
   <div class="container sobre__inner">
 
-    <div class="sobre__avatar-col" aria-hidden="true">
+    <div class="sobre__avatar-col">
       <div class="sobre__photo-wrap">
-        <div class="sobre__photo-placeholder">
-          <span class="sobre__initials">RR</span>
-        </div>
+        <img
+          src="/images/rosangela/foto-2.jpg"
+          alt="Rosangela Rocha - Psicóloga"
+          class="sobre__photo"
+        />
         <div class="sobre__badge">
           <span class="badge-dot" aria-hidden="true"></span>
           Atendendo agora
@@ -76,17 +78,12 @@
 
 /* avatar col */
 .sobre__photo-wrap { position: relative; display: inline-block; }
-.sobre__photo-placeholder {
-  width: 260px; height: 320px;
+.sobre__photo {
+  width: 260px;
+  height: 320px;
   border-radius: var(--radius-xl);
-  background: linear-gradient(145deg, #D5E8DC, var(--accent-light));
-  display: flex; align-items: center; justify-content: center;
-}
-.sobre__initials {
-  font-family: var(--font-display);
-  font-size: 4rem;
-  color: var(--sage-700);
-  opacity: .6;
+  object-fit: cover;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .sobre__badge {

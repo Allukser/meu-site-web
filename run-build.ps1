@@ -1,5 +1,5 @@
-Set-Location "C:\Users\gregr\Documents\GitHub\meu-site-web"
-$log = "C:\Users\gregr\Documents\GitHub\meu-site-web\build-log.txt"
+Set-Location "C:\dev"
+$log = "C:\dev\build-log.txt"
 "=== $(Get-Date) ===" | Out-File $log -Encoding utf8
 
 # --- 1. Build Astro ---
