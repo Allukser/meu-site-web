@@ -89,7 +89,10 @@ function corsOk(body, status, origin, env) {
   const allowed = env.ALLOWED_ORIGIN || '';
   const isAllowed =
     origin === allowed ||
+    origin === 'https://psicorosangelarocha.com' ||
+    origin === 'https://www.psicorosangelarocha.com' ||
     origin.endsWith('.pages.dev') ||
+    origin.endsWith('.alukser.workers.dev') ||  // workers.dev staging
     origin === '';           // chamadas diretas (ex: wrangler tail / curl)
 
   return new Response(body, {
