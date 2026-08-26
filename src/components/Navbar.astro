@@ -85,6 +85,7 @@ const WA_LINK = "https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agen
 @media (max-width: 768px) {
   .nav__links, .nav__cta { display: none; }
   .nav__hamburger { display: flex; }
+  .nav__logo-img { width: 52px; height: 52px; }
 
   .nav__links.open {
     display: flex;
@@ -108,29 +109,35 @@ const WA_LINK = "https://wa.me/5511999999999?text=Olá%2C%20gostaria%20de%20agen
 </style>
 
 <script>
-const nav = document.querySelector('.nav') as HTMLElement;
-const hamburger = document.getElementById('hamburger')!;
-const links = document.querySelector('.nav__links') as HTMLElement;
-const cta = document.querySelector('.nav__cta') as HTMLElement;
+document.addEventListener('DOMContentLoaded', () => {
+  const nav = document.querySelector('.nav') as HTMLElement;
+  const hamburger = document.getElementById('hamburger') as HTMLButtonElement;
+  const links = document.querySelector('.nav__links') as HTMLElement;
+  const cta = document.querySelector('.nav__cta') as HTMLElement;
 
-let scrollTicking = false;
-window.addEventListener(
-  'scroll',
-  () => {
-    if (!scrollTicking) {
-      scrollTicking = true;
-      requestAnimationFrame(() => {
-        nav.classList.toggle('scrolled', window.scrollY > 20);
-        scrollTicking = false;
-      });
-    }
-  },
-  { passive: true },
-);
+  if (nav) {
+    let scrollTicking = false;
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!scrollTicking) {
+          scrollTicking = true;
+          requestAnimationFrame(() => {
+            nav.classList.toggle('scrolled', window.scrollY > 20);
+            scrollTicking = false;
+          });
+        }
+      },
+      { passive: true },
+    );
+  }
 
-hamburger.addEventListener('click', () => {
-  const open = links.classList.toggle('open');
-  cta.classList.toggle('open', open);
-  hamburger.setAttribute('aria-expanded', String(open));
+  if (hamburger && links && cta) {
+    hamburger.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      cta.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', String(open));
+    });
+  }
 });
 </script>
